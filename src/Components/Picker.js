@@ -8,6 +8,7 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
+import Checkbox from '@mui/material/Checkbox';
 
 const Picker = () => {
 	const navigate = useNavigate();
@@ -49,17 +50,12 @@ const Picker = () => {
 				<List>
 					{ingredients.map((ingredient) => {
 						return (
-							<ListItem>
-								<span key={ingredient}>
-									<input
-										type="checkbox"
-										id={ingredient}
-										name={ingredient}
-										onChange={onChange}
-									/>
-									<label htmlFor={ingredient}>{ingredient}</label>
-								</span>
-							</ListItem>
+							<FormGroup key={ingredient}>
+								<FormControlLabel
+									control={<Checkbox onChange={onChange} name={ingredient} />}
+									label={ingredient}
+								/>
+							</FormGroup>
 						);
 					})}
 				</List>
