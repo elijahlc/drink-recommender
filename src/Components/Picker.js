@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { stockIngredients } from '../store';
 
 const Picker = () => {
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
+
 	const { ingredients } = useSelector((state) => state);
 
 	const [stockedIngredients, setStockedIngredients] = useState([]);
@@ -21,6 +24,7 @@ const Picker = () => {
 	const onSubmit = (e) => {
 		e.preventDefault();
 		dispatch(stockIngredients(stockedIngredients));
+		navigate('/matches');
 	};
 
 	return (

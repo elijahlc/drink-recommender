@@ -61,7 +61,26 @@ export const fetchDrinks = () => {
 			}
 		);
 
-		dispatch({ type: 'drinks/set', drinks: response.data.drinks });
+		let drinks = response.data.drinks;
+
+		for (let drink of drinks) {
+			const detailsResponse = await axios.get(
+				'https://www.thecocktaildb.com/api/json/v1/1/lookup.php',
+				{
+					params: {
+						i: drink.idDrink,
+					},
+				}
+			);
+
+			for (let property in detailsResponse.data.drinks[0]) {
+				if (detailsResponse.data.drinks[0][property]) {
+					drink[property] = detailsResponse.data.drinks[0][property];
+				}
+			}
+		}
+
+		dispatch({ type: 'drinks/set', drinks: drinks });
 	};
 };
 
