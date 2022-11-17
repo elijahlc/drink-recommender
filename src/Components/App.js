@@ -21,7 +21,7 @@ const App = () => {
 			<Routes>
 				<Route path="/" />
 				<Route path="/picker" element={<Picker />} />
-				<Route path="/matches" element={<Matches />} />
+				<Route path="/matches/:mode" element={<Matches />} />
 			</Routes>
 		</div>
 	);

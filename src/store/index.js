@@ -80,6 +80,23 @@ export const fetchDrinks = () => {
 			}
 		}
 
+		for (let drink of drinks) {
+			drink.ingredients = [];
+			drink.measurements = [];
+
+			for (let property in drink) {
+				if (property.includes('Ingredient')) {
+					drink.ingredients.push(drink[property]);
+					drink.measurements.push(
+						drink[`strMeasure${property[property.length - 1]}`]
+					);
+
+					delete drink[property];
+					delete drink[`strMeasure${property[property.length - 1]}`];
+				}
+			}
+		}
+
 		dispatch({ type: 'drinks/set', drinks: drinks });
 	};
 };
