@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import store from '../store';
+import LinearProgress from '@mui/material/LinearProgress';
 
 const Matches = () => {
 	const [matchedDrinks, setMatchedDrinks] = useState([]);
@@ -33,8 +33,16 @@ const Matches = () => {
 	}, [stockedIngredients, drinks]);
 
 	if (!stockedIngredients.length || !drinks.length) {
-		return <div>Finding matches...</div>;
-	} else if (!matchedDrinks.length) {
+		return (
+			<div>
+				<LinearProgress />
+			</div>
+		);
+	} else if (
+		stockedIngredients.length &&
+		drinks.length &&
+		!matchedDrinks.length
+	) {
 		return <div>No matches found</div>;
 	} else {
 		return (

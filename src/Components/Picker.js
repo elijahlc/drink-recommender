@@ -3,8 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { stockIngredients } from '../store';
 import Switch from '@mui/material/Switch';
+import Tooltip from '@mui/material/Tooltip';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
 
 const Picker = () => {
 	const navigate = useNavigate();
@@ -43,25 +46,34 @@ const Picker = () => {
 		<div className="Picker">
 			<h2>Select which of the following ingredients you have on hand:</h2>
 			<form onSubmit={onSubmit}>
-				{ingredients.map((ingredient) => {
-					return (
-						<span key={ingredient}>
-							<input
-								type="checkbox"
-								id={ingredient}
-								name={ingredient}
-								onChange={onChange}
-							/>
-							<label htmlFor={ingredient}>{ingredient}</label>
-						</span>
-					);
-				})}
+				<List>
+					{ingredients.map((ingredient) => {
+						return (
+							<ListItem>
+								<span key={ingredient}>
+									<input
+										type="checkbox"
+										id={ingredient}
+										name={ingredient}
+										onChange={onChange}
+									/>
+									<label htmlFor={ingredient}>{ingredient}</label>
+								</span>
+							</ListItem>
+						);
+					})}
+				</List>
 				<FormGroup>
-					<FormControlLabel
-						control={<Switch />}
-						onChange={handleModeChange}
-						label="Use strict mode (only match recipes you have all ingredients for, not recommended)"
-					/>
+					<Tooltip
+						title="Strict mode only matches recipes you have all the ingredients for (not recommended)."
+						placement="right"
+					>
+						<FormControlLabel
+							control={<Switch />}
+							onChange={handleModeChange}
+							label="Use strict mode"
+						/>
+					</Tooltip>
 				</FormGroup>
 				<button>Submit</button>
 			</form>
