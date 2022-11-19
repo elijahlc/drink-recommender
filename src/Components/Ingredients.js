@@ -6,15 +6,11 @@ import Switch from '@mui/material/Switch';
 import Tooltip from '@mui/material/Tooltip';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Grid from '@mui/material/Grid';
 
@@ -60,7 +56,7 @@ const Ingredients = () => {
 	};
 
 	return (
-		<div className="Picker">
+		<div className="Ingredients">
 			<Button variant="outlined" onClick={handleClickOpen}>
 				Select your ingredients
 			</Button>

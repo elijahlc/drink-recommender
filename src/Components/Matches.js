@@ -95,7 +95,11 @@ const Matches = () => {
 		drinks.length &&
 		!matchedDrinks.length
 	) {
-		return <div>No matches found</div>;
+		return (
+			<Box>
+				<Typography>No matches found.</Typography>
+			</Box>
+		);
 	} else {
 		return (
 			<ImageList cols={4} sx={{ width: '100vw', height: '100vh' }}>
