@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import CircularProgress from '@mui/material/CircularProgress';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
@@ -90,11 +89,7 @@ const Matches = () => {
 				</ImageListItem>
 			</ImageList>
 		);
-	} else if (
-		stockedIngredients.length &&
-		drinks.length &&
-		!matchedDrinks.length
-	) {
+	} else if (stockedIngredients.length && drinks.length && !matchedDrinks.length) {
 		return (
 			<Box>
 				<Typography>No matches found.</Typography>
@@ -102,15 +97,11 @@ const Matches = () => {
 		);
 	} else {
 		return (
-			<ImageList cols={4} sx={{ width: '100vw', height: '100vh' }}>
+			<ImageList cols={4}>
 				{matchedDrinks.map((drink) => {
 					return (
 						<ImageListItem key={drink.strDrink}>
-							<img
-								src={`${drink.strDrinkThumb}?w=248&fit=crop&auto=format`}
-								alt={drink.strDrink}
-								loading="lazy"
-							/>
+							<img src={`${drink.strDrinkThumb}?w=248&fit=crop&auto=format`} alt={drink.strDrink} loading="lazy" />
 							<ImageListItemBar
 								title={drink.strDrink}
 								actionIcon={
@@ -152,9 +143,7 @@ const Matches = () => {
 														</Typography>
 													</ListItem>
 													<ListItem>
-														<Typography variant="body1">
-															{details.instructions}
-														</Typography>
+														<Typography variant="body1">{details.instructions}</Typography>
 													</ListItem>
 												</List>
 											</Box>

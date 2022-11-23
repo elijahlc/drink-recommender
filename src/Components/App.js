@@ -5,6 +5,7 @@ import { useNavigate, Routes, Route } from 'react-router-dom';
 import Matches from './Matches';
 import Ingredients from './Ingredients';
 import Home from './Home';
+import RandomCocktail from './RandomCocktail';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -67,7 +68,14 @@ const App = () => {
 						>
 							Use my ingredients
 						</MenuItem>
-						<MenuItem onClick={handleClose}>Get a random cocktail</MenuItem>
+						<MenuItem
+							onClick={() => {
+								handleClose();
+								navigate('/random');
+							}}
+						>
+							Get a random cocktail
+						</MenuItem>
 					</Menu>
 				</Toolbar>
 			</AppBar>
@@ -75,6 +83,7 @@ const App = () => {
 				<Route path="/" element={<Home />} />
 				<Route path="/ingredients" element={<Ingredients />} />
 				<Route path="/matches/:mode" element={<Matches />} />
+				<Route path="/random" element={<RandomCocktail />} />
 			</Routes>
 		</div>
 	);
