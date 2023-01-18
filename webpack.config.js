@@ -1,5 +1,7 @@
 'use strict';
 
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
+
 module.exports = {
 	devtool: 'source-map',
 	module: {
@@ -16,6 +18,14 @@ module.exports = {
 				test: /\.css$/,
 				use: ['style-loader', 'css-loader'],
 			},
+			{
+				test: /\.(jpe?g|png|gif|svg)$/i,
+				loader: 'file-loader',
+				options: {
+					name: '[name].[ext]',
+				},
+			},
 		],
 	},
+	plugins: [new NodePolyfillPlugin()],
 };

@@ -7,6 +7,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/dist', express.static(path.join(__dirname, '../dist')));
+app.use('/assets', express.static(path.join(__dirname, '../assets')));
 app.use('/api/drinks', require('./api/drinks'));
 app.use('/api/ingredients', require('./api/ingredients'));
 

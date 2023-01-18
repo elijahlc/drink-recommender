@@ -13,6 +13,8 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import LocalBarIcon from '@mui/icons-material/LocalBar';
 
+import './App.css';
+
 const App = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
