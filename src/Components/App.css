@@ -7,12 +7,19 @@
 	--darkGreen: #5c913b;
 	--gray: #cdd6db;
 	--white: #f9fafa;
+	--black: #101313;
+}
+
+main {
+	padding-top: 5rem;
 }
 
 body {
 	margin: 0;
 	font-family: var(--system-ui);
 	font-weight: 300;
+	background-color: var(--white);
+	color: var(--black);
 }
 
 a {
@@ -26,20 +33,6 @@ a:hover {
 	color: var(--yellow);
 }
 
-.Home,
-.Ingredients {
-	width: 100vw;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-
-.Home > * {
-	margin-bottom: 2rem !important;
-}
-
-.Home-section {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+button {
+	margin: 1rem;
 }
