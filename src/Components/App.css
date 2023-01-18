@@ -1,5 +1,29 @@
+:root {
+	--system-ui: system-ui, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+		'Segoe UI Symbol';
+	--orange: #ee8b0a;
+	--yellow: #fccb52;
+	--lightGreen: #75af53;
+	--darkGreen: #5c913b;
+	--gray: #cdd6db;
+	--white: #f9fafa;
+}
+
 body {
 	margin: 0;
+	font-family: var(--system-ui);
+	font-weight: 300;
+}
+
+a {
+	color: var(--white);
+	text-transform: none;
+	box-sizing: border-box;
+	transition: color 0.5s ease;
+}
+
+a:hover {
+	color: var(--yellow);
 }
 
 .Home,
