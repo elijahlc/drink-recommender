@@ -1,10 +1,7 @@
 :root {
 	--system-ui: system-ui, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
 		'Segoe UI Symbol';
-	--orange: #ee8b0a;
-	--yellow: #fccb52;
-	--lightGreen: #75af53;
-	--darkGreen: #5c913b;
+	--whiskey: #bb7124;
 	--gray: #cdd6db;
 	--white: #f9fafa;
 	--black: #101313;
@@ -30,9 +27,30 @@ a {
 }
 
 a:hover {
-	color: var(--yellow);
+	color: var(--whiskey);
 }
 
 button {
 	margin: 1rem;
+	border: none;
+	outline: 1px solid var(--gray);
+	background-color: var(--white);
+	color: var(--black);
+	border-radius: 5px;
+	font-size: 1rem;
+	font-weight: 300;
+	padding: 1rem 2rem;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	transition: background-color 0.5s ease;
+}
+
+button:hover {
+	cursor: pointer;
+	background-color: var(--whiskey);
+	color: var(--white);
+}
+
+button:active {
+	background-color: #a2621f;
 }
