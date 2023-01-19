@@ -2,17 +2,31 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { stockIngredients } from '../store';
+import Home from './Home';
 import Switch from '@mui/material/Switch';
 import Tooltip from '@mui/material/Tooltip';
-import FormGroup from '@mui/material/FormGroup';
+import { alpha, styled } from '@mui/material/styles';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import Button from '@mui/material/Button';
+import DoneOutlinedIcon from '@mui/icons-material/DoneOutlined';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import Grid from '@mui/material/Grid';
+
+import './Ingredients.css';
+
+const StyledSwitch = styled(Switch)(({ theme }) => ({
+	'& .MuiSwitch-switchBase.Mui-checked': {
+		color: 'var(--bombay)',
+		'&:hover': {
+			backgroundColor: alpha('#6294bc', theme.palette.action.hoverOpacity),
+		},
+	},
+	'& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
+		backgroundColor: 'var(--bombay)',
+	},
+}));
 
 const Ingredients = () => {
 	const navigate = useNavigate();
@@ -30,13 +44,12 @@ const Ingredients = () => {
 
 	const handleClose = () => {
 		setOpen(false);
+		navigate('/');
 	};
 
 	const onChange = (e) => {
 		if (stockedIngredients.includes(e.target.name)) {
-			setStockedIngredients(
-				stockedIngredients.filter((i) => i !== e.target.name)
-			);
+			setStockedIngredients(stockedIngredients.filter((i) => i !== e.target.name));
 		} else {
 			setStockedIngredients([...stockedIngredients, e.target.name]);
 		}
@@ -57,47 +70,71 @@ const Ingredients = () => {
 
 	return (
 		<div className="Ingredients">
-			<Button variant="outlined" onClick={handleClickOpen}>
-				Select your ingredients
-			</Button>
-			<Dialog open={open} maxWidth="lg" fullWidth={true}>
-				<DialogTitle>
-					Select which of the following ingredients you have on hand:
+			<Home ingredientButtonAction={handleClickOpen} />
+
+			<Dialog open={open} maxWidth="lg" fullWidth={true} PaperProps={{ style: { backgroundColor: 'var(--black)' } }}>
+				<DialogTitle
+					sx={{
+						textTransform: 'uppercase',
+						letterSpacing: '2px',
+						fontSize: '2rem',
+						fontWeight: 400,
+						color: 'var(--white)',
+						textAlign: 'center',
+					}}
+				>
+					Check which ingredients you have on hand:
 				</DialogTitle>
+
 				<DialogContent>
-					<Grid container spacing={2}>
+					<div className="Ingredients-list">
 						{ingredients.map((ingredient) => {
 							return (
-								<Grid item xs={4} key={ingredient}>
-									<FormGroup>
-										<FormControlLabel
-											control={
-												<Checkbox onChange={onChange} name={ingredient} />
-											}
-											label={ingredient}
+								<FormControlLabel
+									control={
+										<Checkbox
+											sx={{
+												color: 'var(--bombay)',
+												'&.Mui-checked': {
+													color: 'var(--bombay)',
+												},
+											}}
+											checkedIcon={<DoneOutlinedIcon />}
 										/>
-									</FormGroup>
-								</Grid>
+									}
+									disableTypography={true}
+									onChange={onChange}
+									label={ingredient}
+									name={ingredient}
+									key={ingredient}
+									sx={{
+										margin: 0,
+									}}
+								/>
 							);
 						})}
-					</Grid>
-					<FormGroup>
-						<Tooltip title="Strict mode only matches recipes you have all the ingredients for (not recommended).">
+					</div>
+				</DialogContent>
+
+				<DialogActions sx={{ display: 'flex', justifyContent: 'space-between' }}>
+					<button onClick={handleClose}>Cancel</button>
+
+					<div>
+						<Tooltip title="Unselecting this option will use strict mode, limiting the cocktail results, and is not recommended.">
 							<FormControlLabel
-								control={<Switch />}
+								control={<StyledSwitch defaultChecked />}
 								onChange={handleModeChange}
-								label="Use strict mode"
+								label="Include cocktails that may require other ingredients"
+								disableTypography={true}
+								sx={{
+									textTransform: 'uppercase',
+									letterSpacing: '2px',
+									color: 'var(--white)',
+								}}
 							/>
 						</Tooltip>
-					</FormGroup>
-				</DialogContent>
-				<DialogActions>
-					<Button name="cancel" onClick={handleClose}>
-						Cancel
-					</Button>
-					<Button name="cancel" onClick={onSubmit}>
-						Submit
-					</Button>
+						<button onClick={onSubmit}>Submit</button>
+					</div>
 				</DialogActions>
 			</Dialog>
 		</div>

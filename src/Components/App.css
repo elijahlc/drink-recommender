@@ -2,6 +2,7 @@
 	--system-ui: system-ui, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
 		'Segoe UI Symbol';
 	--whiskey: #bb7124;
+	--bombay: #6294bc;
 	--gray: #cdd6db;
 	--white: #f9fafa;
 	--black: #101313;
@@ -15,8 +16,10 @@ body {
 	margin: 0;
 	font-family: var(--system-ui);
 	font-weight: 300;
-	background-color: var(--white);
-	color: var(--black);
+	background-image: url('../../assets/bar-wall.jpg');
+	background-size: cover;
+	background-color: var(--black);
+	color: var(--white);
 }
 
 a {
@@ -27,7 +30,7 @@ a {
 }
 
 a:hover {
-	color: var(--whiskey);
+	color: var(--bombay);
 }
 
 button {
@@ -47,10 +50,10 @@ button {
 
 button:hover {
 	cursor: pointer;
-	background-color: var(--whiskey);
+	background-color: var(--bombay);
 	color: var(--white);
 }
 
 button:active {
-	background-color: #a2621f;
+	background-color: #497fab;
 }

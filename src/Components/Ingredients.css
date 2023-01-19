@@ -1,0 +1,16 @@
+.Ingredients-list {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.Ingredients-list > * {
+	width: 25%;
+	color: var(--white);
+	letter-spacing: 2px;
+	text-transform: lowercase;
+	font-weight: 300;
+}
+
+.MuiSwitch-colorPrimary {
+	color: var(--bombay);
+}
