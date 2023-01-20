@@ -14,6 +14,13 @@ import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import Skeleton from '@mui/material/Skeleton';
 
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+
+import './Matches.css';
+
 const Matches = () => {
 	const [matchedDrinks, setMatchedDrinks] = useState([]);
 	const [drawerOpen, setDrawerOpen] = useState(false);
@@ -72,91 +79,114 @@ const Matches = () => {
 		}
 	}, [stockedIngredients, drinks]);
 
+	// if (!stockedIngredients.length || !drinks.length) {
+	// 	return (
+	// 		<ImageList cols={4} sx={{ width: '100vw', height: '100vh' }}>
+	// 			<ImageListItem>
+	// 				<Skeleton variant="rectangular" height={375} />
+	// 			</ImageListItem>
+	// 			<ImageListItem>
+	// 				<Skeleton variant="rectangular" height={375} />
+	// 			</ImageListItem>
+	// 			<ImageListItem>
+	// 				<Skeleton variant="rectangular" height={375} />
+	// 			</ImageListItem>
+	// 			<ImageListItem>
+	// 				<Skeleton variant="rectangular" height={375} />
+	// 			</ImageListItem>
+	// 		</ImageList>
+	// 	);
+	// } else if (stockedIngredients.length && drinks.length && !matchedDrinks.length) {
+	// 	return (
+	// 		<Box>
+	// 			<Typography>No matches found.</Typography>
+	// 		</Box>
+	// 	);
+	// } else {
+	// return (
+	// 	<div className="Matches">
+	// 		<ImageList cols={4}>
+	// 			{matchedDrinks.map((drink) => {
+	// 				return (
+	// 					<ImageListItem key={drink.strDrink}>
+	// 						<img src={`${drink.strDrinkThumb}?w=248&fit=crop&auto=format`} alt={drink.strDrink} loading="lazy" />
+	// 						<ImageListItemBar
+	// 							title={drink.strDrink}
+	// 							actionIcon={
+	// 								<IconButton
+	// 									sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
+	// 									aria-label={`info about ${drink.strDrink}`}
+	// 									onClick={() => toggleDrawer(drink)}
+	// 								>
+	// 									<InfoIcon />
+	// 									<Drawer anchor="right" open={drawerOpen}>
+	// 										<Box sx={{ width: 400 }}>
+	// 											<List>
+	// 												<ListItem>
+	// 													<Typography variant="h5" component="h2">
+	// 														{details.name}
+	// 													</Typography>
+	// 												</ListItem>
+	// 												<Divider />
+	// 												<ListItem>
+	// 													<Typography variant="h6" component="h3">
+	// 														Ingredients
+	// 													</Typography>
+	// 												</ListItem>
+
+	// 												{details.ingredients.map((ingredient, index) => {
+	// 													return (
+	// 														<ListItem key={ingredient}>
+	// 															<Typography variant="body1">
+	// 																{ingredient}: {details.measurements[index]}
+	// 															</Typography>
+	// 														</ListItem>
+	// 													);
+	// 												})}
+
+	// 												<Divider />
+	// 												<ListItem>
+	// 													<Typography variant="h6" component="h3">
+	// 														Instructions
+	// 													</Typography>
+	// 												</ListItem>
+	// 												<ListItem>
+	// 													<Typography variant="body1">{details.instructions}</Typography>
+	// 												</ListItem>
+	// 											</List>
+	// 										</Box>
+	// 									</Drawer>
+	// 								</IconButton>
+	// 							}
+	// 						/>
+	// 					</ImageListItem>
+	// 				);
+	// 			})}
+	// 		</ImageList>
+	// 	</div>
+	// );
+	// }
 	if (!stockedIngredients.length || !drinks.length) {
 		return (
-			<ImageList cols={4} sx={{ width: '100vw', height: '100vh' }}>
-				<ImageListItem>
-					<Skeleton variant="rectangular" height={375} />
-				</ImageListItem>
-				<ImageListItem>
-					<Skeleton variant="rectangular" height={375} />
-				</ImageListItem>
-				<ImageListItem>
-					<Skeleton variant="rectangular" height={375} />
-				</ImageListItem>
-				<ImageListItem>
-					<Skeleton variant="rectangular" height={375} />
-				</ImageListItem>
-			</ImageList>
-		);
-	} else if (stockedIngredients.length && drinks.length && !matchedDrinks.length) {
-		return (
-			<Box>
-				<Typography>No matches found.</Typography>
-			</Box>
-		);
-	} else {
-		return (
-			<ImageList cols={4}>
-				{matchedDrinks.map((drink) => {
-					return (
-						<ImageListItem key={drink.strDrink}>
-							<img src={`${drink.strDrinkThumb}?w=248&fit=crop&auto=format`} alt={drink.strDrink} loading="lazy" />
-							<ImageListItemBar
-								title={drink.strDrink}
-								actionIcon={
-									<IconButton
-										sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
-										aria-label={`info about ${drink.strDrink}`}
-										onClick={() => toggleDrawer(drink)}
-									>
-										<InfoIcon />
-										<Drawer anchor="right" open={drawerOpen}>
-											<Box sx={{ width: 400 }}>
-												<List>
-													<ListItem>
-														<Typography variant="h5" component="h2">
-															{details.name}
-														</Typography>
-													</ListItem>
-													<Divider />
-													<ListItem>
-														<Typography variant="h6" component="h3">
-															Ingredients
-														</Typography>
-													</ListItem>
-
-													{details.ingredients.map((ingredient, index) => {
-														return (
-															<ListItem key={ingredient}>
-																<Typography variant="body1">
-																	{ingredient}: {details.measurements[index]}
-																</Typography>
-															</ListItem>
-														);
-													})}
-
-													<Divider />
-													<ListItem>
-														<Typography variant="h6" component="h3">
-															Instructions
-														</Typography>
-													</ListItem>
-													<ListItem>
-														<Typography variant="body1">{details.instructions}</Typography>
-													</ListItem>
-												</List>
-											</Box>
-										</Drawer>
-									</IconButton>
-								}
-							/>
-						</ImageListItem>
-					);
+			<div className="Matches">
+				{new Array(10).map((drink) => {
+					return <Card>waiting</Card>;
 				})}
-			</ImageList>
+			</div>
 		);
 	}
+
+	return (
+		<div className="Matches">
+			{matchedDrinks.map((drink) => {
+				return (
+					<Card>
+						<CardMedia image={drink.strDrinkThumb} sx={{ height: 'calc(25vw - 2rem)' }} />
+					</Card>
+				);
+			})}
+		</div>
+	);
 };
 
 export default Matches;

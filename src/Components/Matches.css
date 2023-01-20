@@ -1,0 +1,11 @@
+.Matches {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	height: calc(100vh - 5rem);
+}
+
+.Matches > * {
+	margin: 1rem;
+	width: calc(25% - 2rem);
+}
