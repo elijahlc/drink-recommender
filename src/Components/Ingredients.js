@@ -117,9 +117,11 @@ const Ingredients = () => {
 				</DialogContent>
 
 				<DialogActions sx={{ display: 'flex', justifyContent: 'space-between' }}>
-					<button onClick={handleClose}>Cancel</button>
+					<button id="cancel-button" onClick={handleClose}>
+						Cancel
+					</button>
 
-					<div>
+					<div className="Ingredients-submit-container" id="submit-container">
 						<Tooltip title="Unselecting this option will use strict mode, limiting the cocktail results, and is not recommended.">
 							<FormControlLabel
 								control={<StyledSwitch defaultChecked />}

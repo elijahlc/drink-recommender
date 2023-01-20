@@ -14,3 +14,49 @@
 .MuiSwitch-colorPrimary {
 	color: var(--bombay);
 }
+
+@media (max-width: 1199px) {
+	.MuiDialogActions-root {
+		flex-direction: column;
+	}
+
+	.Ingredients-submit-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+	}
+
+	#submit-container {
+		order: 1;
+	}
+
+	#cancel-button {
+		order: 2;
+	}
+}
+
+@media (max-width: 899px) {
+	.Ingredients-list > * {
+		width: 33%;
+	}
+}
+
+@media (max-width: 599px) {
+	.Ingredients-list > * {
+		width: 50%;
+	}
+}
+
+@media (max-width: 399px) {
+	.Ingredients-list > * {
+		width: 100%;
+	}
+
+	#cancel-button,
+	#submit-container button {
+		margin: 0.5rem;
+		font-size: 1rem;
+		padding: 0.5rem 1rem;
+	}
+}
