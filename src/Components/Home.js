@@ -17,7 +17,7 @@ const Home = ({ ingredientButtonAction }) => {
 	return (
 		<div className="Home">
 			<h1>Ready for a cocktail?</h1>
-			<div className="Home-image-container">
+			<div className="Home-action-buttons">
 				<button onClick={handleIngredientButtonClick}>Enter my ingredients</button>
 				<button>Recommend a random cocktail</button>
 			</div>
