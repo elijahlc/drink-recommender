@@ -62,9 +62,9 @@ const Ingredients = () => {
 
 	const handleModeChange = (e) => {
 		if (e.target.checked) {
-			setMode('strict');
-		} else {
 			setMode('loose');
+		} else {
+			setMode('strict');
 		}
 	};
 

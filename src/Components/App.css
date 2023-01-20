@@ -17,6 +17,7 @@ body {
 	font-family: var(--system-ui);
 	font-weight: 300;
 	background-image: url('../../assets/bar-wall.jpg');
+	background-repeat: repeat;
 	background-size: cover;
 	background-color: var(--black);
 	color: var(--white);
