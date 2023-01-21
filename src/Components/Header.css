@@ -19,4 +19,29 @@ header {
 	color: var(--white);
 	text-transform: uppercase;
 	letter-spacing: 2px;
+	transition: color 0.5s ease;
+}
+
+.header-menu:hover {
+	color: var(--bombay);
+	cursor: pointer;
+}
+
+.MuiMenu-list {
+	display: flex;
+	flex-direction: column;
+}
+
+#nav-menu a {
+	text-decoration: none;
+	text-transform: lowercase;
+	letter-spacing: 1px;
+	padding: 0.5rem;
+	color: var(--black);
+	transition: 0.5s ease;
+}
+
+#nav-menu a:hover {
+	color: var(--bombay);
+	background-color: rgba(16, 19, 19, 0.05);
 }
