@@ -39,8 +39,7 @@ a:hover {
 
 button {
 	margin: 1rem;
-	border: none;
-	outline: 1px solid var(--gray);
+	border: 1px solid var(--gray);
 	background-color: var(--white);
 	color: var(--black);
 	border-radius: 5px;

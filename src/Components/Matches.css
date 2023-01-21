@@ -3,7 +3,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	min-height: calc(100vh - 5rem);
+	min-height: calc((var(--vh, 1vh) * 100) - 5rem);
 }
 
 .Matches-loading {

@@ -77,7 +77,7 @@ const Ingredients = () => {
 					sx={{
 						textTransform: 'uppercase',
 						letterSpacing: '2px',
-						fontSize: '2rem',
+						fontSize: window.innerWidth < 400 ? '1.2rem' : '2rem',
 						fontWeight: 400,
 						color: 'var(--white)',
 						textAlign: 'center',
