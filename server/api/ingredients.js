@@ -16,6 +16,8 @@ app.get('/', async (req, res, next) => {
 			return accum;
 		}, []);
 
+		ingredients.sort();
+
 		res.send(ingredients);
 	} catch (ex) {
 		next(ex);
