@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import Divider from '@mui/material/Divider';
-import Typography from '@mui/material/Typography';
-import Skeleton from '@mui/material/Skeleton';
+import CircularProgress from '@mui/material/CircularProgress';
 import Paper from '@mui/material/Paper';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
@@ -56,6 +52,11 @@ const Matches = () => {
 		}
 	};
 
+	const getRandomCocktail = () => {
+		let randomIndex = Math.floor(Math.random() * 100);
+		setMatchedDrinks(drinks.filter((drink, idx) => idx === randomIndex));
+	};
+
 	useEffect(() => {
 		if (stockedIngredients.length && drinks.length) {
 			if (mode === 'strict') {
@@ -64,7 +65,7 @@ const Matches = () => {
 						return drink.ingredients.every(ingredientIsInStock);
 					})
 				);
-			} else {
+			} else if (mode === 'loose') {
 				setMatchedDrinks(
 					drinks.filter((drink) => {
 						return drink.ingredients.some(ingredientIsInStock);
@@ -72,110 +73,19 @@ const Matches = () => {
 				);
 			}
 		}
+
+		if (drinks.length && mode === 'random') {
+			getRandomCocktail();
+		}
 	}, [stockedIngredients, drinks]);
 
-	// if (!stockedIngredients.length || !drinks.length) {
-	// 	return (
-	// 		<ImageList cols={4} sx={{ width: '100vw', height: '100vh' }}>
-	// 			<ImageListItem>
-	// 				<Skeleton variant="rectangular" height={375} />
-	// 			</ImageListItem>
-	// 			<ImageListItem>
-	// 				<Skeleton variant="rectangular" height={375} />
-	// 			</ImageListItem>
-	// 			<ImageListItem>
-	// 				<Skeleton variant="rectangular" height={375} />
-	// 			</ImageListItem>
-	// 			<ImageListItem>
-	// 				<Skeleton variant="rectangular" height={375} />
-	// 			</ImageListItem>
-	// 		</ImageList>
-	// 	);
-	// } else if (stockedIngredients.length && drinks.length && !matchedDrinks.length) {
-	// 	return (
-	// 		<Box>
-	// 			<Typography>No matches found.</Typography>
-	// 		</Box>
-	// 	);
-	// } else {
-	// return (
-	// 	<div className="Matches">
-	// 		<ImageList cols={4}>
-	// 			{matchedDrinks.map((drink) => {
-	// 				return (
-	// 					<ImageListItem key={drink.strDrink}>
-	// 						<img src={`${drink.strDrinkThumb}?w=248&fit=crop&auto=format`} alt={drink.strDrink} loading="lazy" />
-	// 						<ImageListItemBar
-	// 							title={drink.strDrink}
-	// 							actionIcon={
-	// 								<IconButton
-	// 									sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
-	// 									aria-label={`info about ${drink.strDrink}`}
-	// 									onClick={() => toggleDrawer(drink)}
-	// 								>
-	// 									<InfoIcon />
-	// 									<Drawer anchor="right" open={drawerOpen}>
-	// 										<Box sx={{ width: 400 }}>
-	// 											<List>
-	// 												<ListItem>
-	// 													<Typography variant="h5" component="h2">
-	// 														{details.name}
-	// 													</Typography>
-	// 												</ListItem>
-	// 												<Divider />
-	// 												<ListItem>
-	// 													<Typography variant="h6" component="h3">
-	// 														Ingredients
-	// 													</Typography>
-	// 												</ListItem>
-
-	// 												{details.ingredients.map((ingredient, index) => {
-	// 													return (
-	// 														<ListItem key={ingredient}>
-	// 															<Typography variant="body1">
-	// 																{ingredient}: {details.measurements[index]}
-	// 															</Typography>
-	// 														</ListItem>
-	// 													);
-	// 												})}
-
-	// 												<Divider />
-	// 												<ListItem>
-	// 													<Typography variant="h6" component="h3">
-	// 														Instructions
-	// 													</Typography>
-	// 												</ListItem>
-	// 												<ListItem>
-	// 													<Typography variant="body1">{details.instructions}</Typography>
-	// 												</ListItem>
-	// 											</List>
-	// 										</Box>
-	// 									</Drawer>
-	// 								</IconButton>
-	// 							}
-	// 						/>
-	// 					</ImageListItem>
-	// 				);
-	// 			})}
-	// 		</ImageList>
-	// 	</div>
-	// );
-	// }
-	if (!stockedIngredients.length || !drinks.length) {
+	if ((!stockedIngredients.length && mode !== 'random') || !drinks.length) {
 		return (
 			<div className="Matches">
-				<Paper className="Matches-card">
-					<Skeleton className="Matches-img-skeleton" sx={{ width: '100%', height: '75%' }} />
-				</Paper>
-				<Paper className="Matches-card">
-					<Skeleton className="Matches-img-skeleton" sx={{ width: '100%', height: '75%' }} />
-				</Paper>
-				<Paper className="Matches-card">
-					<Skeleton className="Matches-img-skeleton" sx={{ width: '100%', height: '75%' }} />
-				</Paper>
-				<Paper className="Matches-card">
-					<Skeleton className="Matches-img-skeleton" sx={{ width: '100%', height: '75%' }} />
-				</Paper>
+				<div className="Matches-loading">
+					<CircularProgress size="3rem" sx={{ color: 'var(--white)' }} />
+					<span>{mode === 'random' ? 'Mixing your drink' : 'Finding matching cocktails'}</span>
+				</div>
 			</div>
 		);
 	} else if (stockedIngredients.length && drinks.length && !matchedDrinks.length) {
@@ -187,7 +97,10 @@ const Matches = () => {
 		);
 	} else
 		return (
-			<div className="Matches">
+			<div
+				className="Matches"
+				style={{ flexDirection: mode === 'random' ? 'column' : 'row', flexWrap: mode === 'random' ? 'noWrap' : 'wrap' }}
+			>
 				{matchedDrinks.map((drink) => {
 					return (
 						<Paper className="Matches-card" key={drink.name}>
@@ -197,6 +110,8 @@ const Matches = () => {
 						</Paper>
 					);
 				})}
+
+				{mode === 'random' ? <button onClick={getRandomCocktail}>Get a new random cocktail</button> : null}
 
 				<Dialog open={open} maxWidth="lg" fullWidth={true} PaperProps={{ style: { backgroundColor: 'var(--black)' } }}>
 					<DialogTitle
@@ -223,7 +138,6 @@ const Matches = () => {
 								);
 							})}
 						</ul>
-						<Divider light={true} />
 						<h3>Instructions</h3>
 						<p>{details.instructions}</p>
 					</DialogContent>

@@ -1,19 +1,33 @@
 .Matches {
 	width: 100%;
 	display: flex;
-	flex-wrap: wrap;
-	background-color: var(--black);
-	height: calc(100vh - 5rem);
+	align-items: center;
+	justify-content: center;
+	min-height: calc(100vh - 5rem);
+}
+
+.Matches-loading {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.Matches-loading span {
+	text-transform: uppercase;
+	font-size: 3rem;
+	font-weight: 300;
+	letter-spacing: 2px;
+	text-align: center;
 }
 
 .Matches-card {
 	margin: 1rem;
 	width: calc(25% - 2rem);
-	height: (calc(1.5 * (25vw - 2rem)));
+	height: calc(1.5 * (25vw - 2rem));
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: flex-start;
 	background-color: var(--white);
 	box-shadow: 0px 2px 1px -1px rgb(16 19 19 / 20%), 0px 1px 1px 0px rgb(16 19 19 / 14%),
 		0px 1px 3px 0px rgb(16 19 19 / 12%);
@@ -46,4 +60,18 @@
 	color: var(--white);
 	letter-spacing: 2px;
 	text-transform: lowercase;
+}
+
+@media (max-width: 1199px) {
+	.Matches-card {
+		width: calc(50% - 2rem);
+		height: calc(1.5 * (50vw - 2rem));
+	}
+}
+
+@media (max-width: 699px) {
+	.Matches-card {
+		width: calc(100% - 2rem);
+		height: calc(1.5 * (100vw - 2rem));
+	}
 }

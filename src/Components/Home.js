@@ -19,7 +19,7 @@ const Home = ({ ingredientButtonAction }) => {
 			<h1>Ready for a cocktail?</h1>
 			<div className="Home-action-buttons">
 				<button onClick={handleIngredientButtonClick}>Enter my ingredients</button>
-				<button>Recommend a random cocktail</button>
+				<button onClick={() => navigate('/matches/random')}>Recommend a random cocktail</button>
 			</div>
 		</div>
 	);

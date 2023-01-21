@@ -18,7 +18,14 @@ const App = () => {
 	}, []);
 
 	return (
-		<div className="App" style={{ backgroundImage: 'url("../../assets/bar-wall.jpg")', backgroundSize: 'cover' }}>
+		<div
+			className="App"
+			style={{
+				backgroundImage: 'url("../../assets/bar-wall.jpg")',
+				backgroundSize: 'cover',
+				backgroundRepeat: 'repeat-y',
+			}}
+		>
 			<Header />
 
 			<main>
