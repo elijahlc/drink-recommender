@@ -6,6 +6,7 @@ import Header from './Header';
 import Matches from './Matches';
 import Ingredients from './Ingredients';
 import Home from './Home';
+import NotFound from './NotFound';
 
 import './App.css';
 
@@ -33,6 +34,7 @@ const App = () => {
 					<Route path="/" element={<Home />} />
 					<Route path="/ingredients" element={<Ingredients />} />
 					<Route path="/matches/:mode" element={<Matches />} />
+					<Route path="*" element={<NotFound />} />
 				</Routes>
 			</main>
 		</div>
