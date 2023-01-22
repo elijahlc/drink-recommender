@@ -15,6 +15,14 @@ app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
+app.use((err, req, res, next) => {
+	if (err.message && !err.errors) {
+		res.status(err.status || 500).send({ error: err.message });
+	} else {
+		res.status(err.status || 500).send(err.errors);
+	}
+});
+
 const initialize = () => {
 	const port = process.env.PORT || 3000;
 	app.listen(port, () => console.log(`app listening on port ${port}`));
