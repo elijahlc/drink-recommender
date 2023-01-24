@@ -16,6 +16,9 @@ const App = () => {
 	useEffect(() => {
 		dispatch(fetchIngredients());
 		dispatch(fetchDrinks());
+
+		let vh = window.innerHeight * 0.01;
+		document.documentElement.style.setProperty('--vh', `${vh}px`);
 	}, []);
 
 	return (
